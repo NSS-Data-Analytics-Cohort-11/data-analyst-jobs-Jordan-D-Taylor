@@ -36,7 +36,7 @@ FROM data_analyst_jobs
 WHERE location = 'TN'
 AND star_rating > 4;
 
--- Answer: 4
+-- Answer: 3
 
 
 -- 5. How many postings in the dataset have a review count between 500 and 1000?
@@ -56,10 +56,13 @@ WHERE star_rating IS NOT NULL
 GROUP BY state
 ORDER BY AVG(star_rating) DESC;
 
--- Answer: 4.1999998090000000
+-- Answer: NE
 
 
 -- 7. Select unique job titles from the data_analyst_jobs table. How many are there?
+
+SELECT DISTINCT(title)
+FROM data_analyst_jobs;
 
 SELECT COUNT(DISTINCT(title))
 FROM data_analyst_jobs;
@@ -71,7 +74,7 @@ FROM data_analyst_jobs;
 
 SELECT COUNT(DISTINCT(title))
 FROM data_analyst_jobs
-WHERE location = 'CA';
+WHERE location IN ('CA');
 
 -- Answer: 230
 
@@ -96,21 +99,21 @@ AND company IS NOT NULL
 GROUP BY company
 ORDER BY avg_star_rating DESC;
 
--- Answer: Unilever, 4.1999998090000000
+-- Answer: Unilever, General Motors, Nike, American Express, Microsoft, & Kaiser Permanente; 4.1999998090000000
 
 
 -- 11. Find all the job titles that contain the word ‘Analyst’. How many different job titles are there? 
 
-SELECT title
+SELECT DISTINCT title
 FROM data_analyst_jobs
 WHERE title ILIKE '%Analyst%';
 
--- Answer: 1669
+-- Answer: 774
 
 
 -- 12. How many different job titles do not contain either the word ‘Analyst’ or the word ‘Analytics’? What word do these positions have in common?
 
-SELECT DISTINCT title
+SELECT *
 FROM data_analyst_jobs
 WHERE title NOT ILIKE '%Analyst%'
 AND title NOT ILIKE '%Analytics%';
